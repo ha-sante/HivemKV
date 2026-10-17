@@ -1,0 +1,20 @@
+FROM alpine:latest
+
+RUN apk add --no-cache ca-certificates curl && \
+    addgroup -g 1000 hivem && \
+    adduser -D -u 1000 -G hivem -h /home/hivem hivem
+
+ARG TARGETPLATFORM
+COPY $TARGETPLATFORM/hivem /usr/local/bin/hivem
+RUN chmod +x /usr/local/bin/hivem
+
+USER hivem
+WORKDIR /home/hivem
+
+VOLUME ["/data"]
+EXPOSE 8080
+
+HEALTHCHECK --interval=15s --timeout=3s --start-period=10s \
+  CMD curl -fsS http://127.0.0.1:8080/livez || exit 1
+
+ENTRYPOINT ["/usr/local/bin/hivem"]
