@@ -30,4 +30,6 @@ identity:<scope>:<key>
 
 ## Usage
 
-See [`service/.env.example`](./service/.env.example) for configuration.
+- See [`service/.env.example`](./service/.env.example) for configuration.
+- See [`service/Dockerfile.release`](/service/Dockerfile.release) for premade Dockerfile.
+- See [`search?q=keywords:hivem`](https://www.npmjs.com/search?q=keywords:hivem) for premade js SDKs.
